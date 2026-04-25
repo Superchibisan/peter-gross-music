@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peter Gross — Acoustic Guitar</title>
+  <template id="__bundler_thumbnail" data-bg-color="#17100A">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#17100A"/>
+    <text x="600" y="360" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="90" fill="#C9A96E" opacity="0.9">Peter</text>
+    <text x="600" y="460" text-anchor="middle" font-family="Georgia,serif" font-size="90" font-weight="300" fill="#F2E8D9" opacity="0.7">Gross</text>
+    <line x1="480" y1="490" x2="720" y2="490" stroke="#C9A96E" stroke-width="1" opacity="0.4"/>
+  </svg>
+</template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+  <style>
+    /* ── Cedar Reverb Design System ── */
+    :root {
+      --black:      #17100A;
+      --mahogany:   #2C1810;
+      --cedar:      #8B5E3C;
+      --mid-cedar:  #6B4226;
+      --cream:      #F2E8D9;
+      --warm-white: #FAF6F0;
+      --gold:       #C9A96E;
+      --gold-light: #DFC08A;
+      --text-dark:  #2C1810;
+      --text-mid:   #5C3D24;
+      --font-d: 'Fraunces', Georgia, serif;
+      --font-b: 'Lato', sans-serif;
+      --nav-h: 72px;
+      --gap: clamp(72px, 10vw, 140px);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-b); background: var(--warm-white); color: var(--text-dark); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    img  { display: block; max-width: 100%; }
+    a    { text-decoration: none; color: inherit; }
+    button { font-family: var(--font-b); cursor: pointer; }
+
+    /* ── Pages ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(20px, 5vw, 72px);
+      transition: background .4s, backdrop-filter .4s;
+    }
+    nav.scrolled, nav.solid {
+      background: rgba(23,16,10,.93);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .nav-logo { font-family: var(--font-d); font-size: 1.2rem; font-weight: 400; font-style: italic; letter-spacing: .06em; color: var(--cream); cursor: pointer; }
+    .nav-links { list-style: none; display: flex; gap: clamp(18px, 2.8vw, 42px); }
+    .nav-links a { font-size: .7rem; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; color: rgba(242,232,217,.62); transition: color .2s; cursor: pointer; }
+    .nav-links a:hover, .nav-links a.active { color: var(--cream); }
+    .nav-cta { color: var(--black) !important; background: var(--gold); padding: 8px 20px; border-radius: 2px; transition: background .2s !important; }
+    .nav-cta:hover { background: var(--gold-light) !important; }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; border: none; background: none; padding: 4px; }
+    .nav-toggle span { display: block; width: 24px; height: 1.5px; background: var(--cream); transition: all .3s; }
+
+    /* ── Shared ── */
+    .section-label { font-size: .67rem; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .section-heading { font-family: var(--font-d); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 300; line-height: 1.1; letter-spacing: -.015em; color: var(--text-dark); margin-bottom: 24px; }
+    .section-heading em { font-style: italic; color: var(--cedar); }
+    .section-heading.light { color: var(--cream); }
+    .btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-b); font-size: .72rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; padding: 15px 34px; border-radius: 2px; border: 1px solid transparent; cursor: pointer; transition: all .22s; }
+    .btn-gold  { background: var(--gold);  color: var(--black); }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-outline { border-color: rgba(242,232,217,.28); color: var(--cream); }
+    .btn-outline:hover { border-color: rgba(242,232,217,.65); background: rgba(242,232,217,.05); }
+    .btn-cedar { border-color: rgba(139,94,60,.4); color: var(--cedar); }
+    .btn-cedar:hover { background: var(--cedar); color: var(--cream); }
+    .divider { width: 100%; overflow: hidden; line-height: 0; }
+    .divider svg { display: block; }
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .75s ease, transform .75s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
+
+    /* ── Animations ── */
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:none; } }
+    @keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
+    @keyframes lineGrow { from { transform:scaleY(0); } to { transform:scaleY(1); } }
+    @keyframes breathe  { 0%,100% { transform:scale(1); opacity:.7; } 50% { transform:scale(1.08); opacity:1; } }
+    @keyframes wavePulse { 0%,100% { transform:scaleY(1); opacity:.38; } 50% { transform:scaleY(var(--h)); opacity:.7; } }
+
+    /* ════════════════════════════
+       HOME PAGE
+    ════════════════════════════ */
+    #page-home {}
+
+    /* Hero */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: flex-end;
+      padding: 0 clamp(24px,6vw,96px) clamp(64px,10vh,120px);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: #17100A;
+    }
+    .hero-bg img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
+      opacity: .63; display: block;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 72% 40%, rgba(139,94,60,.22) 0%, transparent 65%),
+                  linear-gradient(162deg, rgba(44,24,16,.72) 0%, rgba(23,16,10,.88) 55%, rgba(12,8,5,.96) 100%);
+    }
+    .hero-glow {
+      position: absolute; right: 10%; top: 20%; width: 42vw; height: 60vh;
+      background: radial-gradient(ellipse, rgba(201,169,110,.07) 0%, transparent 70%);
+      border-radius: 50%; z-index: 1; pointer-events: none;
+      animation: breathe 8s ease-in-out infinite;
+    }
+    .hero-strings { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+    .hero-strings svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero-content { position: relative; z-index: 2; max-width: 860px; }
+    .hero-eyebrow { font-size: .68rem; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; opacity: 0; animation: fadeUp .8s .3s ease forwards; }
+    .hero-name { font-family: var(--font-d); font-size: clamp(4.5rem,12vw,10.5rem); font-weight: 300; line-height: .88; letter-spacing: -.02em; color: var(--cream); margin-bottom: 32px; opacity: 0; animation: fadeUp .9s .5s ease forwards; }
+    .hero-name em { font-style: italic; color: var(--gold); }
+    .hero-tagline { font-family: var(--font-d); font-size: clamp(1rem,2.4vw,1.5rem); font-weight: 300; font-style: italic; color: rgba(242,232,217,.65); line-height: 1.6; max-width: 460px; margin-bottom: 48px; opacity: 0; animation: fadeUp .9s .7s ease forwards; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; opacity: 0; animation: fadeUp .9s .9s ease forwards; }
+    .hero-scroll { position: absolute; bottom: 44px; right: clamp(24px,6vw,96px); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0; animation: fadeIn 1s 1.5s ease forwards; }
+    .hero-scroll span { writing-mode: vertical-rl; font-size: .6rem; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: rgba(242,232,217,.3); }
+    .scroll-line { width: 1px; height: 56px; background: linear-gradient(to bottom, rgba(201,169,110,.35), transparent); transform-origin: top; animation: lineGrow 1.4s 1.9s ease-out forwards; transform: scaleY(0); }
+    .hero-rule { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; height: 1px; background: linear-gradient(to right, transparent, rgba(201,169,110,.15) 30%, rgba(201,169,110,.15) 70%, transparent); }
+
+    /* Home: About teaser */
+    .home-about { background: var(--warm-white); padding: var(--gap) clamp(24px,6vw,96px); }
+    .home-about-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(48px,7vw,104px); align-items: center; }
+    .about-frame-wrap { position: relative; }
+    .about-frame { aspect-ratio: 4/5; background: var(--cedar); border-radius: 2px; overflow: hidden; }
+    .about-frame svg { width: 100%; height: 100%; }
+    .about-frame-wrap::after { content: ''; position: absolute; top: -14px; left: -14px; right: 14px; bottom: -14px; border: 1px solid rgba(201,169,110,.22); border-radius: 2px; pointer-events: none; z-index: -1; }
+    .about-body { font-size: 1.02rem; font-weight: 300; line-height: 1.85; color: var(--text-mid); }
+    .about-body p + p { margin-top: 14px; }
+    .pull-quote { margin: 28px 0; padding-left: 22px; border-left: 2px solid var(--gold); font-family: var(--font-d); font-size: 1.2rem; font-style: italic; font-weight: 300; color: var(--text-dark); line-height: 1.55; }
+
+    /* Home: Performances */
+    .home-perf { background: var(--black); padding: var(--gap) clamp(24px,6vw,96px); }
+    .perf-header { max-width: 1200px; margin: 0 auto 56px; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+    .perf-header .section-heading { color: var(--cream); margin-bottom: 0; }
+    .booking-link { font-size: .68rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); opacity: .65; border-bottom: 1px solid currentColor; padding-bottom: 2px; transition: opacity .2s; white-space: nowrap; }
+    .booking-link:hover { opacity: 1; }
+    .shows-list { max-width: 1200px; margin: 0 auto; list-style: none; }
+    .show-item { display: grid; grid-template-columns: 88px 1fr auto; gap: 28px; align-items: center; padding: 30px 0; border-top: 1px solid rgba(242,232,217,.07); }
+    .show-item:last-child { border-bottom: 1px solid rgba(242,232,217,.07); }
+    .show-date .mo { display: block; font-size: .62rem; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; text-align: center; }
+    .show-date .dy { display: block; font-family: var(--font-d); font-size: 2.8rem; font-weight: 300; line-height: 1; color: var(--cream); text-align: center; }
+    .show-venue { font-family: var(--font-d); font-size: 1.4rem; font-weight: 400; color: var(--cream); margin-bottom: 6px; }
+    .show-meta { font-size: .8rem; font-weight: 300; letter-spacing: .03em; color: rgba(242,232,217,.42); }
+    .show-btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(201,169,110,.3); color: var(--gold); font-size: .66rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; padding: 12px 22px; border-radius: 2px; white-space: nowrap; transition: all .2s; }
+    .show-btn:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+    .show-private-tag { font-size: .64rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: rgba(242,232,217,.2); }
+    .show-item.dimmed { opacity: .42; }
+
+    /* Home: Music teaser */
+    .home-music { background: var(--cream); padding: var(--gap) clamp(24px,6vw,96px); }
+    .music-inner { max-width: 1200px; margin: 0 auto; }
+    .music-header { text-align: center; margin-bottom: 56px; }
+    .music-header .section-heading { margin-bottom: 12px; }
+    .music-header p { font-size: 1rem; font-weight: 300; color: var(--text-mid); line-height: 1.72; max-width: 480px; margin: 0 auto; }
+    .stream-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 16px; margin-bottom: 44px; }
+    .stream-card { background: var(--warm-white); border: 1px solid rgba(44,24,16,.09); border-radius: 2px; padding: 26px 22px 22px; display: flex; flex-direction: column; gap: 10px; transition: transform .22s, box-shadow .22s; }
+    .stream-card:hover { transform: translateY(-3px); box-shadow: 0 14px 44px rgba(44,24,16,.1); }
+    .stream-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+    .stream-name { font-family: var(--font-d); font-size: 1.1rem; font-weight: 400; color: var(--text-dark); }
+    .stream-cta { margin-top: auto; display: flex; align-items: center; gap: 8px; font-size: .65rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--cedar); }
+    .stream-cta svg { transition: transform .2s; }
+    .stream-card:hover .stream-cta svg { transform: translateX(4px); }
+    .featured-track { background: var(--mahogany); border-radius: 2px; padding: clamp(26px,4vw,42px) clamp(22px,5vw,50px); display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .track-info { flex: 1; min-width: 180px; }
+    .track-label { font-size: .62rem; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .track-title { font-family: var(--font-d); font-size: clamp(1.3rem,3vw,2rem); font-weight: 300; font-style: italic; color: var(--cream); margin-bottom: 6px; }
+    .track-meta { font-size: .78rem; font-weight: 300; letter-spacing: .04em; color: rgba(242,232,217,.4); }
+    .waveform { flex: 1; min-width: 140px; max-width: 300px; height: 44px; display: flex; align-items: center; gap: 2.5px; }
+    .waveform span { flex: 1; background: rgba(201,169,110,.38); border-radius: 2px; animation: wavePulse 1.5s ease-in-out infinite; }
+
+    /* ════════════════════════════
+       ABOUT PAGE
+    ════════════════════════════ */
+    .page-hero {
+      background: linear-gradient(162deg, #2C1810 0%, #17100A 60%, #0C0805 100%);
+      padding: calc(var(--nav-h) + 64px) clamp(24px,6vw,96px) 80px;
+      position: relative; overflow: hidden;
+    }
+    .page-hero-inner { max-width: 900px; position: relative; z-index: 2; }
+    .page-hero .section-label { color: var(--gold); }
+    .page-hero-title { font-family: var(--font-d); font-size: clamp(3.5rem,9vw,7.5rem); font-weight: 300; line-height: .9; letter-spacing: -.02em; color: var(--cream); margin-bottom: 24px; }
+    .page-hero-title em { font-style: italic; color: var(--gold); }
+    .page-hero-sub { font-family: var(--font-d); font-size: clamp(1rem,2vw,1.4rem); font-style: italic; font-weight: 300; color: rgba(242,232,217,.6); max-width: 520px; line-height: 1.6; }
+    .page-hero-deco { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+    /* About: Intro */
+    .about-intro { background: var(--warm-white); padding: var(--gap) clamp(24px,6vw,96px); }
+    .about-intro-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(48px,7vw,104px); align-items: start; }
+    .about-portrait { position: relative; }
+    .about-portrait .about-frame { aspect-ratio: 3/4; }
+    .about-portrait::after { content: ''; position: absolute; top: -14px; left: -14px; right: 14px; bottom: -14px; border: 1px solid rgba(201,169,110,.22); border-radius: 2px; pointer-events: none; z-index: -1; }
+    .about-lede { font-family: var(--font-d); font-size: clamp(1.2rem,2.2vw,1.6rem); font-weight: 300; font-style: italic; line-height: 1.55; color: var(--text-dark); margin-bottom: 28px; }
+    .about-text { font-size: 1.02rem; font-weight: 300; line-height: 1.85; color: var(--text-mid); }
+    .about-text p + p { margin-top: 16px; }
+
+    /* About: Timeline */
+    .about-timeline { background: var(--black); padding: var(--gap) clamp(24px,6vw,96px); }
+    .timeline-header { max-width: 1200px; margin: 0 auto 64px; }
+    .timeline-header .section-label { color: var(--gold); }
+    .timeline-header .section-heading { color: var(--cream); }
+    .timeline { max-width: 900px; margin: 0 auto; position: relative; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, rgba(201,169,110,.25) 10%, rgba(201,169,110,.25) 90%, transparent); }
+    .timeline-item { padding: 0 0 52px 44px; position: relative; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before { content: ''; position: absolute; left: -4px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--gold); opacity: .6; }
+    .timeline-era { font-size: .64rem; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; opacity: .8; }
+    .timeline-title { font-family: var(--font-d); font-size: 1.35rem; font-weight: 400; color: var(--cream); margin-bottom: 10px; }
+    .timeline-body { font-size: .95rem; font-weight: 300; line-height: 1.8; color: rgba(242,232,217,.55); }
+
+    /* About: Philosophy */
+    .about-philosophy { background: var(--cream); padding: var(--gap) clamp(24px,6vw,96px); }
+    .philosophy-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+    .big-quote { font-family: var(--font-d); font-size: clamp(1.6rem,4vw,2.8rem); font-weight: 300; font-style: italic; line-height: 1.35; color: var(--text-dark); margin: 32px 0; position: relative; }
+    .big-quote::before { content: '\201C'; font-size: 8rem; line-height: 0; position: absolute; top: 44px; left: -24px; color: rgba(201,169,110,.15); font-family: var(--font-d); }
+    .quote-attr { font-size: .75rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--cedar); margin-top: 20px; }
+    .philosophy-body { font-size: 1.02rem; font-weight: 300; line-height: 1.85; color: var(--text-mid); text-align: left; margin-top: 48px; }
+    .philosophy-body p + p { margin-top: 16px; }
+
+    /* ════════════════════════════
+       MUSIC PAGE
+    ════════════════════════════ */
+    .music-page-body { background: var(--warm-white); padding: var(--gap) clamp(24px,6vw,96px); }
+    .music-page-inner { max-width: 1100px; margin: 0 auto; }
+
+    /* Placeholder notice */
+    .asset-notice { background: rgba(201,169,110,.1); border: 1px dashed rgba(201,169,110,.4); border-radius: 2px; padding: 18px 24px; margin-bottom: 52px; display: flex; align-items: center; gap: 14px; }
+    .asset-notice p { font-size: .82rem; font-weight: 300; color: var(--cedar); line-height: 1.6; }
+    .asset-notice strong { font-weight: 700; }
+
+    .songs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 64px; }
+    .song-card { background: var(--cream); padding: 28px 32px; display: flex; align-items: center; gap: 20px; transition: background .2s; }
+    .song-card:hover { background: #EDE3D3; }
+    .song-num { font-family: var(--font-d); font-size: 2rem; font-weight: 300; color: rgba(44,24,16,.18); line-height: 1; min-width: 36px; }
+    .song-info { flex: 1; }
+    .song-title { font-family: var(--font-d); font-size: 1.15rem; font-weight: 400; color: var(--text-dark); margin-bottom: 4px; }
+    .song-dur { font-size: .75rem; font-weight: 300; color: var(--text-mid); letter-spacing: .05em; }
+    .song-play { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(139,94,60,.3); display: flex; align-items: center; justify-content: center; color: var(--cedar); transition: all .2s; flex-shrink: 0; }
+    .song-mini-wave { flex: 1; display: flex; align-items: center; gap: 2px; height: 28px; opacity: 0.25; transition: opacity .3s; }
+    .song-mini-wave span { display: block; width: 2px; border-radius: 2px; background: var(--cedar); transform-origin: bottom; animation: none; }
+    .song-card.is-playing .song-mini-wave { opacity: 1; }
+    .song-card.is-playing .song-mini-wave span { animation: barBounce var(--spd, .7s) ease-in-out infinite alternate; background: var(--gold); }
+    @keyframes barBounce { from { transform: scaleY(.2); } to { transform: scaleY(1); } }
+    .song-card.is-playing { background: #E8DDD0; }
+    .song-card.is-playing .song-play { background: var(--cedar); color: var(--cream); border-color: var(--cedar); }
+
+    /* Volume control */
+    .volume-bar { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--cream); border: 1px solid rgba(44,24,16,.1); border-radius: 2px; width: clamp(160px, 24%, 260px); }
+    .volume-icon { color: var(--cedar); opacity: .55; flex-shrink: 0; }
+    .volume-slider { flex: 1; -webkit-appearance: none; appearance: none; height: 2px; border-radius: 2px; background: linear-gradient(to right, var(--cedar) var(--pct, 80%), rgba(44,24,16,.15) var(--pct, 80%)); outline: none; cursor: pointer; min-width: 0; }
+    .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); border: 2px solid var(--cream); box-shadow: 0 0 0 1px var(--cedar); cursor: pointer; }
+    .volume-slider::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--gold); border: 2px solid var(--cream); box-shadow: 0 0 0 1px var(--cedar); cursor: pointer; }
+    .volume-pct { font-size: .68rem; font-weight: 300; color: var(--text-mid); min-width: 28px; text-align: right; }
+
+    /* Video section */
+    .video-section { background: var(--black); padding: var(--gap) clamp(24px,6vw,96px); }
+    .video-inner { max-width: 1100px; margin: 0 auto; }
+    .video-grid { display: grid; gap: 24px; }
+    .video-grid.single { grid-template-columns: 1fr; max-width: 800px; margin: 0 auto; }
+    .video-grid.double { grid-template-columns: 1fr 1fr; }
+    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 2px; background: #0a0705; }
+    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    @media (max-width: 720px) { .video-grid.double { grid-template-columns: 1fr; } }
+    .music-streaming { background: var(--black) !important; padding: var(--gap) clamp(24px,6vw,96px); }
+    .streaming-inner { max-width: 1100px; margin: 0 auto; }
+    .streaming-inner .section-heading { color: var(--cream); }
+
+    /* ════════════════════════════
+       GALLERY PAGE
+    ════════════════════════════ */
+    .gallery-body { background: var(--warm-white); padding: var(--gap) clamp(24px,6vw,96px); }
+    .gallery-inner { max-width: 1200px; margin: 0 auto; }
+    .gallery-intro { max-width: 560px; margin-bottom: 56px; }
+    .gallery-intro p { font-size: 1rem; font-weight: 300; line-height: 1.8; color: var(--text-mid); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
+    .gimg { background: var(--cedar); border-radius: 2px; overflow: hidden; position: relative; }
+    .gimg svg { width: 100%; height: 100%; display: block; }
+    /* Row 1: tall portrait + wide landscape */
+    .gimg-1 { grid-column: span 5; aspect-ratio: 3/4; }
+    .gimg-2 { grid-column: span 7; aspect-ratio: 3/2; }
+    /* Row 2: wide landscape + tall portrait */
+    .gimg-3 { grid-column: span 7; aspect-ratio: 3/2; }
+    .gimg-4 { grid-column: span 5; aspect-ratio: 3/4; }
+    /* Row 3: two equal portraits */
+    .gimg-5 { grid-column: span 6; aspect-ratio: 2/3; }
+    .gimg-6 { grid-column: span 6; aspect-ratio: 2/3; }
+    .gimg-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 16px; background: linear-gradient(transparent, rgba(23,16,10,.7)); font-size: .7rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgba(242,232,217,.7); opacity: 0; transition: opacity .25s; }
+    .gimg:hover .gimg-caption { opacity: 1; }
+    .gallery-note { margin-top: 40px; text-align: center; font-size: .82rem; font-weight: 300; color: var(--text-mid); font-style: italic; }
+
+    /* ════════════════════════════
+       CONTACT PAGE
+    ════════════════════════════ */
+    .contact-body { background: var(--warm-white); padding: var(--gap) clamp(24px,6vw,96px); }
+    .contact-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(48px,7vw,100px); align-items: start; }
+    .contact-info {}
+    .contact-info .section-heading { margin-bottom: 20px; }
+    .contact-blurb { font-size: 1rem; font-weight: 300; line-height: 1.8; color: var(--text-mid); margin-bottom: 36px; }
+    .contact-detail { margin-bottom: 28px; }
+    .contact-detail-label { font-size: .64rem; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .contact-detail-value { font-size: 1rem; font-weight: 300; color: var(--text-dark); }
+    .contact-detail-value a { color: var(--cedar); border-bottom: 1px solid rgba(139,94,60,.3); transition: border-color .2s; }
+    .contact-detail-value a:hover { border-color: var(--cedar); }
+    .contact-form-wrap { background: var(--cream); border-radius: 2px; padding: clamp(28px,4vw,48px); }
+    .contact-form-wrap h3 { font-family: var(--font-d); font-size: 1.5rem; font-weight: 300; font-style: italic; color: var(--text-dark); margin-bottom: 28px; }
+    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field label { font-size: .64rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--cedar); }
+    .field input, .field textarea, .field select { background: var(--warm-white); border: 1px solid rgba(44,24,16,.15); border-radius: 2px; padding: 13px 15px; font-family: var(--font-b); font-size: .95rem; font-weight: 300; color: var(--text-dark); outline: none; transition: border-color .2s; -webkit-appearance: none; appearance: none; }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--cedar); }
+    .field textarea { resize: vertical; min-height: 112px; }
+    .form-submit .btn { width: 100%; justify-content: center; }
+    .form-success { display: none; text-align: center; padding: 32px 0; }
+    .form-success.visible { display: block; }
+    .form-success p { font-family: var(--font-d); font-size: 1.3rem; font-style: italic; color: var(--cedar); }
+
+    /* ════════════════════════════
+       FOOTER (shared)
+    ════════════════════════════ */
+    .site-footer { background: var(--black); padding: 44px clamp(24px,6vw,96px); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .footer-logo { font-family: var(--font-d); font-size: 1.05rem; font-weight: 400; font-style: italic; color: rgba(242,232,217,.45); cursor: pointer; }
+    .footer-nav { list-style: none; display: flex; gap: 26px; flex-wrap: wrap; }
+    .footer-nav a { font-size: .64rem; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; color: rgba(242,232,217,.28); transition: color .2s; cursor: pointer; }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-copy { font-size: .7rem; color: rgba(242,232,217,.18); letter-spacing: .04em; }
+
+    /* ════════════════════════════
+       RESPONSIVE
+    ════════════════════════════ */
+    @media (max-width: 900px) {
+      .home-about-inner, .about-intro-inner { grid-template-columns: 1fr; }
+      .about-frame-wrap, .about-portrait { max-width: 340px; margin: 0 auto; }
+      .songs-grid { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .gimg-1 { grid-column: span 12; }
+      .gimg-2, .gimg-3 { grid-column: span 6; }
+      .gimg-4, .gimg-5, .gimg-6 { grid-column: span 6; }
+    }
+    @media (max-width: 640px) {
+      .show-item { grid-template-columns: 72px 1fr; }
+      .show-btn, .show-private-tag { grid-column: 2; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .gimg-2, .gimg-3 { grid-column: span 12; }
+      .gimg-4, .gimg-5, .gimg-6 { grid-column: span 6; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; background: rgba(23,16,10,.97); flex-direction: column; align-items: center; justify-content: center; gap: 34px; }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: .9rem; }
+      .nav-toggle { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     NAV
+══════════════════════════════════ -->
+<nav id="main-nav">
+  <span class="nav-logo" data-page="home">Peter Gross</span>
+  <ul class="nav-links" id="nav-links">
+    <li><a data-page="home">Home</a></li>
+    <li><a data-page="about">About</a></li>
+    <li><a data-page="performances">Shows</a></li>
+    <li><a data-page="music">Music</a></li>
+    <li><a data-page="gallery">Gallery</a></li>
+    <li><a data-page="contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<!-- ══════════════════════════════════
+     HOME PAGE
+══════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="uploads/_Peter%2026%20110.jpg" alt="" aria-hidden="true">
+    </div>
+    <div class="hero-glow"></div>
+    <div class="hero-strings">
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMaxYMid slice" fill="none" aria-hidden="true">
+        <line x1="1070" y1="-60" x2="1025" y2="960" stroke="rgba(201,169,110,.09)" stroke-width="1"/>
+        <line x1="1130" y1="-60" x2="1085" y2="960" stroke="rgba(201,169,110,.06)" stroke-width="1"/>
+        <line x1="1190" y1="-60" x2="1145" y2="960" stroke="rgba(201,169,110,.05)" stroke-width="1"/>
+        <line x1="1250" y1="-60" x2="1205" y2="960" stroke="rgba(201,169,110,.04)" stroke-width="1"/>
+        <line x1="1010" y1="-60" x2="965"  y2="960" stroke="rgba(201,169,110,.06)" stroke-width="1"/>
+        <line x1="950"  y1="-60" x2="905"  y2="960" stroke="rgba(201,169,110,.04)" stroke-width="1"/>
+        <path d="M740 455 Q762 408 784 455 Q806 502 828 455 Q850 408 872 455 Q894 502 916 455 Q938 408 960 455 Q982 502 1004 455" stroke="rgba(201,169,110,.13)" stroke-width="1.5" fill="none"/>
+        <ellipse cx="1300" cy="520" rx="130" ry="190" stroke="rgba(201,169,110,.045)" stroke-width="1" fill="none"/>
+        <circle cx="1300" cy="480" r="38" stroke="rgba(201,169,110,.04)" stroke-width="1" fill="none"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Solo Acoustic Guitar · Ashland, Oregon</p>
+      <h1 class="hero-name">Peter<br><em>Gross</em></h1>
+      <p class="hero-tagline">Dreamy, multi-layered acoustic guitar — intimate soundscapes that resonate long after the last note fades.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" data-page="music">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><polygon points="2,1 12,6.5 2,12" fill="currentColor"/></svg>
+          Listen Now
+        </a>
+        <a class="btn btn-outline" data-page="performances">Upcoming Shows</a>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+    <div class="hero-rule" aria-hidden="true"></div>
+  </section>
+
+  <div class="divider" style="background:#17100A">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" style="height:52px"><path d="M0 0 C480 52 960 52 1440 0 L1440 52 L0 52 Z" fill="#FAF6F0"/></svg>
+  </div>
+
+  <section class="home-about">
+    <div class="home-about-inner">
+      <div class="about-frame-wrap reveal">
+        <div class="about-frame">
+          <img src="uploads/_Peter%2026%20227%20copy.jpg" alt="Peter Gross with guitar" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+          <!-- <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" aria-label="Guitar portrait illustration">
+            <defs>
+              <radialGradient id="ag" cx="50%" cy="58%" r="55%"><stop offset="0%" stop-color="#C9A96E" stop-opacity=".18"/><stop offset="100%" stop-color="#17100A" stop-opacity="0"/></radialGradient>
+              <radialGradient id="av" cx="50%" cy="50%" r="70%"><stop offset="45%" stop-color="transparent"/><stop offset="100%" stop-color="#2C1810" stop-opacity=".8"/></radialGradient>
+            </defs>
+            <rect width="400" height="500" fill="#4A2E18"/>
+            <line x1="0" y1="80"  x2="400" y2="88"  stroke="#5C3820" stroke-width="1" opacity=".4"/>
+            <line x1="0" y1="180" x2="400" y2="190" stroke="#5C3820" stroke-width="1" opacity=".3"/>
+            <line x1="0" y1="290" x2="400" y2="298" stroke="#5C3820" stroke-width="1" opacity=".3"/>
+            <line x1="0" y1="400" x2="400" y2="408" stroke="#5C3820" stroke-width="1" opacity=".25"/>
+            <ellipse cx="200" cy="355" rx="100" ry="115" fill="#2C1810" opacity=".55"/>
+            <ellipse cx="200" cy="255" rx="76"  ry="84"  fill="#2C1810" opacity=".5"/>
+            <path d="M124 308 Q200 296 276 308" stroke="#1A0F0A" stroke-width="3" fill="none" opacity=".4"/>
+            <circle cx="200" cy="278" r="32" fill="#17100A" opacity=".7"/>
+            <circle cx="200" cy="278" r="27" fill="none" stroke="#C9A96E" stroke-width="1.2" opacity=".35"/>
+            <rect x="183" y="378" width="34" height="8" rx="2" fill="#C9A96E" opacity=".3"/>
+            <rect x="190" y="75" width="20" height="190" rx="4" fill="#2C1810" opacity=".75"/>
+            <line x1="190" y1="108" x2="210" y2="108" stroke="#C9A96E" stroke-width=".6" opacity=".4"/>
+            <line x1="190" y1="130" x2="210" y2="130" stroke="#C9A96E" stroke-width=".6" opacity=".38"/>
+            <line x1="190" y1="150" x2="210" y2="150" stroke="#C9A96E" stroke-width=".6" opacity=".36"/>
+            <line x1="190" y1="169" x2="210" y2="169" stroke="#C9A96E" stroke-width=".6" opacity=".34"/>
+            <line x1="190" y1="187" x2="210" y2="187" stroke="#C9A96E" stroke-width=".6" opacity=".32"/>
+            <line x1="190" y1="204" x2="210" y2="204" stroke="#C9A96E" stroke-width=".6" opacity=".3"/>
+            <circle cx="200" cy="140" r="2.5" fill="#C9A96E" opacity=".35"/>
+            <circle cx="200" cy="178" r="2.5" fill="#C9A96E" opacity=".32"/>
+            <line x1="193.5" y1="85" x2="186" y2="390" stroke="#C9A96E" stroke-width=".5" opacity=".55"/>
+            <line x1="196.5" y1="85" x2="191" y2="392" stroke="#C9A96E" stroke-width=".6" opacity=".5"/>
+            <line x1="199"   y1="85" x2="196" y2="394" stroke="#C9A96E" stroke-width=".7" opacity=".45"/>
+            <line x1="201"   y1="85" x2="204" y2="394" stroke="#C9A96E" stroke-width=".7" opacity=".45"/>
+            <line x1="203.5" y1="85" x2="209" y2="392" stroke="#C9A96E" stroke-width=".6" opacity=".5"/>
+            <line x1="206.5" y1="85" x2="214" y2="390" stroke="#C9A96E" stroke-width=".5" opacity=".55"/>
+            <rect x="184" y="48" width="32" height="30" rx="4" fill="#2C1810" opacity=".85"/>
+            <circle cx="188" cy="55" r="3.2" fill="#C9A96E" opacity=".5"/>
+            <circle cx="196" cy="55" r="3.2" fill="#C9A96E" opacity=".5"/>
+            <circle cx="204" cy="55" r="3.2" fill="#C9A96E" opacity=".5"/>
+            <circle cx="212" cy="55" r="3.2" fill="#C9A96E" opacity=".5"/>
+            <circle cx="188" cy="72" r="3.2" fill="#C9A96E" opacity=".45"/>
+            <circle cx="212" cy="72" r="3.2" fill="#C9A96E" opacity=".45"/>
+            <rect width="400" height="500" fill="url(#ag)"/>
+            <rect width="400" height="500" fill="url(#av)"/>
+          </svg> -->
+        </div>
+      </div>
+      <div>
+        <p class="section-label reveal">About the Artist</p>
+        <h2 class="section-heading reveal d1">Music that <em>breathes</em><br>and lingers</h2>
+        <div class="about-body reveal d2">
+          <p>Peter Gross is a solo acoustic guitarist based in Ashland, Oregon — a musician with 30 years of pursuit spanning performance, composition, and contemplation. After decades fronting and co-founding ensembles from Portland to the Bay Area, he returned to the instrument that started it all.</p>
+          <p>In early 2024, Peter picked up his acoustic guitar with fresh ears, exploring open tunings and a stream-of-consciousness approach to composition. The result is music that values tonality, space, and emotion above all else.</p>
+        </div>
+        <blockquote class="pull-quote reveal d2">"When the music is talking to you, best to not get in the way."</blockquote>
+        <a class="btn btn-gold reveal d3" data-page="about" style="display:inline-flex; margin-top:4px;">Full Story</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="background:#FAF6F0">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" style="height:52px"><path d="M0 52 C480 0 960 0 1440 52 L1440 52 L0 52 Z" fill="#17100A"/></svg>
+  </div>
+
+  <section class="home-perf" id="home-perf-section">
+    <div class="perf-header">
+      <div>
+        <p class="section-label reveal">Live</p>
+        <h2 class="section-heading reveal d1">Upcoming<br>Performances</h2>
+      </div>
+      <a class="booking-link reveal" data-page="contact">Booking inquiries →</a>
+    </div>
+    <ul class="shows-list">
+      <li class="show-item reveal">
+        <div class="show-date"><span class="mo">May</span><span class="dy">23</span></div>
+        <div>
+          <p class="show-venue">The Liquid Lounge</p>
+          <p class="show-meta">370 E Main St, Ashland, OR &nbsp;·&nbsp; 7:00 – 9:00 PM &nbsp;·&nbsp; All Ages · Ticketed</p>
+        </div>
+        <a class="show-btn" data-page="contact">
+          Tickets <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5h8M7 2.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </li>
+      <li class="show-item dimmed reveal d1">
+        <div class="show-date"><span class="mo">Aug</span><span class="dy" style="font-size:2rem;opacity:.4">—</span></div>
+        <div>
+          <p class="show-venue" style="color:rgba(242,232,217,.35)">Private Function</p>
+          <p class="show-meta">Available for weddings, corporate events &amp; private gatherings</p>
+        </div>
+        <span class="show-private-tag">Private</span>
+      </li>
+    </ul>
+  </section>
+
+  <div class="divider" style="background:#17100A">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" style="height:52px"><path d="M0 0 C480 52 960 52 1440 0 L1440 52 L0 52 Z" fill="#F2E8D9"/></svg>
+  </div>
+
+  <section class="home-music">
+    <div class="music-inner">
+      <div class="music-header">
+        <p class="section-label reveal">Listen</p>
+        <h2 class="section-heading reveal d1">Find the Music</h2>
+        <p class="reveal d2">Stream, download, or follow Peter Gross on your platform of choice.</p>
+      </div>
+      <div class="stream-grid">
+        <a href="#" class="stream-card reveal">
+          <div class="stream-icon"><svg viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="17" fill="#1DB954" opacity=".12"/><path d="M8 25 C14 22.5 22 22 30 24.5" stroke="#1DB954" stroke-width="2.5" stroke-linecap="round"/><path d="M8 20 C15 17 24 16.5 31 19" stroke="#1DB954" stroke-width="2.5" stroke-linecap="round" opacity=".7"/><path d="M8 15 C16 11.5 26 11 32 13.5" stroke="#1DB954" stroke-width="2.5" stroke-linecap="round" opacity=".4"/></svg></div>
+          <p class="stream-name">Spotify</p>
+          <span class="stream-cta">Stream <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a href="#" class="stream-card reveal d1">
+          <div class="stream-icon"><svg viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="17" fill="#FC3C44" opacity=".1"/><path d="M19 8 C19 8 11 11.5 11 19 C11 26.5 19 30 19 30 C19 30 27 26.5 27 19 C27 11.5 19 8 19 8Z" stroke="#FC3C44" stroke-width="1.5" fill="none"/><circle cx="19" cy="19" r="4.5" fill="#FC3C44" opacity=".55"/></svg></div>
+          <p class="stream-name">Apple Music</p>
+          <span class="stream-cta">Listen <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a href="#" class="stream-card reveal d2">
+          <div class="stream-icon"><svg viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="17" fill="#1DA0C3" opacity=".1"/><path d="M9 23 L9 15 Q9 13 11.5 13 Q14 13 14 15 L14 23" stroke="#1DA0C3" stroke-width="2" stroke-linecap="round"/><path d="M17 23 L17 11 Q17 9 19.5 9 Q22 9 22 11 L22 23" stroke="#1DA0C3" stroke-width="2" stroke-linecap="round"/><path d="M25 23 L25 17 Q25 15 27.5 15 Q30 15 30 17 L30 23" stroke="#1DA0C3" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <p class="stream-name">Bandcamp</p>
+          <span class="stream-cta">Download <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a href="https://soundcloud.com/peter-gross-361909254" target="_blank" rel="noopener" class="stream-card reveal d3">
+          <div class="stream-icon"><svg viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="17" fill="#FF5500" opacity=".1"/><path d="M8 28 Q13 16 19 21 Q25 26 30 12" stroke="#FF5500" stroke-width="2" stroke-linecap="round" fill="none"/></svg></div>
+          <p class="stream-name">SoundCloud</p>
+          <span class="stream-cta">Explore <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a href="https://www.instagram.com/therealpetergross/" target="_blank" rel="noopener" class="stream-card reveal d4">
+          <div class="stream-icon"><svg viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="17" fill="#E1306C" opacity=".1"/><rect x="11" y="11" width="16" height="16" rx="5" stroke="#E1306C" stroke-width="1.8" fill="none"/><circle cx="19" cy="19" r="4.5" stroke="#E1306C" stroke-width="1.6" fill="none"/><circle cx="24.2" cy="13.8" r="1.1" fill="#E1306C"/></svg></div>
+          <p class="stream-name">Instagram</p>
+          <span class="stream-cta">Follow <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+      <div class="featured-track reveal">
+        <div class="track-info">
+          <p class="track-label">Featured Track</p>
+          <p class="track-title">"Morning in the Siskiyous"</p>
+          <p class="track-meta">From the upcoming album &nbsp;·&nbsp; 4:32</p>
+        </div>
+        <div class="waveform" id="waveform-home" aria-hidden="true"></div>
+        <a href="#" class="btn btn-gold" style="white-space:nowrap">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><polygon points="2,1 12,6.5 2,12" fill="currentColor"/></svg>
+          Play
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Home: Video -->
+  <section class="video-section">
+    <div class="video-inner">
+      <p class="section-label reveal" style="color:var(--gold)">Watch</p>
+      <h2 class="section-heading light reveal d1" style="margin-bottom:36px;">Live &amp; <em>In Session</em></h2>
+      <div class="video-grid single reveal d2">
+        <div class="video-wrap">
+          <iframe width="1172" height="659" src="https://www.youtube.com/embed/MNYNR6Vs9WA" title="20260306 Peter Gross Liquid Lounge Song 4 Edge of the Atmosphere v2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="background:#F2E8D9">
+    <svg viewBox="0 0 1440 40" preserveAspectRatio="none" style="height:40px"><path d="M0 40 C360 0 1080 0 1440 40 L1440 40 L0 40 Z" fill="#FAF6F0"/></svg>
+  </div>
+
+  <!-- Home: Contact CTA -->
+  <section style="background:var(--warm-white); padding:var(--gap) clamp(24px,6vw,96px);">
+    <div style="max-width:680px; margin:0 auto; text-align:center;">
+      <p class="section-label reveal">Get in Touch</p>
+      <h2 class="section-heading reveal d1">Book a Show<br>or <em>Say Hello</em></h2>
+      <p class="reveal d2" style="font-size:1rem; font-weight:300; color:var(--text-mid); line-height:1.75; margin-bottom:36px;">Available for intimate concerts, private events, weddings, and corporate gatherings throughout Southern Oregon and beyond.</p>
+      <a class="btn btn-gold reveal d3" data-page="contact" style="display:inline-flex; margin:0 auto;">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1 6.5h11M7.5 3l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Send a Message
+      </a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-logo" data-page="home">Peter Gross</span>
+      <ul class="footer-nav">
+        <li><a data-page="home">Home</a></li>
+        <li><a data-page="about">About</a></li>
+        <li><a data-page="performances">Shows</a></li>
+        <li><a data-page="music">Music</a></li>
+        <li><a data-page="gallery">Gallery</a></li>
+        <li><a data-page="contact">Contact</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 Peter Gross. All rights reserved.</p>
+    </div>
+  </footer>
+</div><!-- /page-home -->
+
+
+<!-- ══════════════════════════════════
+     ABOUT PAGE
+══════════════════════════════════ -->
+<div class="page" id="page-about">
+
+  <div class="page-hero">
+    <div class="page-hero-deco">
+      <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 1440 400" fill="none" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+        <line x1="1100" y1="-20" x2="1060" y2="420" stroke="rgba(201,169,110,.07)" stroke-width="1"/>
+        <line x1="1160" y1="-20" x2="1120" y2="420" stroke="rgba(201,169,110,.05)" stroke-width="1"/>
+        <line x1="1220" y1="-20" x2="1180" y2="420" stroke="rgba(201,169,110,.04)" stroke-width="1"/>
+        <path d="M860 220 Q880 185 900 220 Q920 255 940 220 Q960 185 980 220 Q1000 255 1020 220" stroke="rgba(201,169,110,.1)" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+    <div class="page-hero-inner">
+      <p class="section-label">The Artist</p>
+      <h1 class="page-hero-title">Thirty Years<br>of <em>Sound</em></h1>
+      <p class="page-hero-sub">A journey from a five-year-old picking up his first guitar to the intimate, open-tuned acoustic compositions of today.</p>
+    </div>
+  </div>
+
+  <section class="about-intro">
+    <div class="about-intro-inner">
+      <div class="about-portrait reveal">
+        <div class="about-frame" style="aspect-ratio:3/4">
+          <img src="uploads/_Peter%2026%20059.jpg" alt="Peter Gross seated with Martin guitar" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+            <!-- Label -->
+            <text x="200" y="510" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="13" fill="rgba(201,169,110,0.4)" letter-spacing="2">Replace with client photo</text>
+        </div>
+        <div style="position:absolute; top:-14px; left:-14px; right:14px; bottom:-14px; border:1px solid rgba(201,169,110,.22); border-radius:2px; pointer-events:none; z-index:-1;"></div>
+      </div>
+
+      <div>
+        <p class="section-label reveal">Biography</p>
+        <p class="about-lede reveal d1">"A 30-year pursuit encompassing performance, composition, and contemplation."</p>
+        <div class="about-text reveal d2">
+          <p>Peter Gross began playing guitar at age five, returning to formal lessons at thirteen after childhood studies in piano, trumpet, baritone horn, and drums. From the beginning, music wasn't a hobby — it was the language that made the most sense.</p>
+          <p>What followed was three decades of restless collaboration and reinvention: punk-influenced high school recordings on a Tascam 4-track, a genre-bending jazz quartet in Portland, West Coast touring with folk artists, hip-hop stages in Oakland and Berkeley, and a string of adventurous ensemble projects back home in Ashland, Oregon.</p>
+          <p>In early 2024, Peter set down the band projects and picked up an acoustic guitar with fresh ears. Working in open tuning with a stream-of-consciousness compositional approach, he found a voice that had been waiting patiently through all those years of playing with others. The result is music that feels both new and deeply familiar — warm, layered, and unhurried.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="background:var(--warm-white)">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" style="height:52px"><path d="M0 52 C480 0 960 0 1440 52 L1440 52 L0 52 Z" fill="#17100A"/></svg>
+  </div>
+
+  <section class="about-timeline">
+    <div class="timeline-header">
+      <p class="section-label reveal">Career</p>
+      <h2 class="section-heading light reveal d1">A Life in<br><em>Music</em></h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <p class="timeline-era">Early Childhood</p>
+        <p class="timeline-title">The First Instruments</p>
+        <p class="timeline-body">Peter began with piano, then worked through trumpet and baritone horn before settling on drums. Guitar entered the picture at age five — the instrument that would become the throughline of everything that followed. Formal guitar lessons began at thirteen.</p>
+      </div>
+      <div class="timeline-item reveal d1">
+        <p class="timeline-era">High School &amp; Early College</p>
+        <p class="timeline-title">First Recordings</p>
+        <p class="timeline-body">Using a Tascam 4-track recorder, Peter began capturing original music in bedrooms and basements — an early introduction to the idea that composition and recording were inseparable crafts. The rawness of those sessions taught him that capturing feeling mattered more than technical perfection.</p>
+      </div>
+      <div class="timeline-item reveal d1">
+        <p class="timeline-era">Mid-1990s · Portland, OR</p>
+        <p class="timeline-title">Michael Peters Quartet</p>
+        <p class="timeline-body">Co-founded the genre-bending Michael Peters Quartet in Portland, navigating the intersection of jazz, folk, and alternative sounds that defined that city's fertile mid-90s music scene. The ensemble pushed Peter's compositional thinking well beyond any single genre.</p>
+      </div>
+      <div class="timeline-item reveal d1">
+        <p class="timeline-era">Ashland, OR — West Coast Tours</p>
+        <p class="timeline-title">Oregon Country Fair &amp; Strawberry Festival</p>
+        <p class="timeline-body">Embedded in Ashland's thriving local scene, Peter toured the West Coast supporting folk artist Alice DiMicele and performed at landmark venues including the Strawberry Music Festival and the Oregon Country Fair — outdoor stages that shaped his understanding of how music connects with an audience.</p>
+      </div>
+      <div class="timeline-item reveal d1">
+        <p class="timeline-era">Santa Cruz, CA</p>
+        <p class="timeline-title">Synchrosystem</p>
+        <p class="timeline-body">Co-founded Synchrosystem alongside mandolinist Christian Runge in Santa Cruz, blending acoustic stringed instruments with broader sonic palettes. The project deepened Peter's relationship with layered, textural music-making.</p>
+      </div>
+      <div class="timeline-item reveal d1">
+        <p class="timeline-era">Bay Area, CA</p>
+        <p class="timeline-title">Otis Goodnight</p>
+        <p class="timeline-body">Joined Otis Goodnight, a 10-piece Hip-hop and R&amp;B ensemble, performing in Oakland, Berkeley, and San Francisco. Playing in a large ensemble with tight arrangements and groove-driven music broadened Peter's rhythmic vocabulary and his sense of how a guitar can serve a collective sound.</p>
+      </div>
+      <div class="timeline-item reveal d1">
+        <p class="timeline-era">Return to Ashland, OR</p>
+        <p class="timeline-title">Ensemble Years</p>
+        <p class="timeline-body">Back in Ashland, Peter founded and joined a string of eclectic projects: <em>Funkamungus</em> (10-piece funk collective), <em>uPhonic Soundsystem</em> (downtempo electronica), <em>Deep Sea</em> (original Psych-Funk), and <em>Living Loving Led</em> (Led Zeppelin tribute). Each project was a complete world unto itself.</p>
+      </div>
+      <div class="timeline-item reveal d1">
+        <p class="timeline-era">2024 — Present</p>
+        <p class="timeline-title">Return to the Acoustic Guitar</p>
+        <p class="timeline-body">In early 2024, Peter returned to solo acoustic guitar — this time with open tunings and a stream-of-consciousness compositional approach. Setting aside theory and judgment, he let the music lead. The result: "Dreamy, Multi-layered Acoustic Guitar" with forward-moving rhythms, rich textures, and a quality of deep listening baked into every note.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="background:#17100A">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" style="height:52px"><path d="M0 0 C480 52 960 52 1440 0 L1440 52 L0 52 Z" fill="#F2E8D9"/></svg>
+  </div>
+
+  <section class="about-philosophy">
+    <div class="philosophy-inner">
+      <p class="section-label reveal">Philosophy</p>
+      <h2 class="section-heading reveal d1">The Approach</h2>
+      <div class="big-quote reveal d2">
+        When the music is talking to you, best to not get in the way.
+      </div>
+      <p class="quote-attr reveal d2">— Peter Gross</p>
+      <div class="philosophy-body reveal d3">
+        <p>Peter's compositional method begins with non-judgment and simplicity. Rather than imposing structure onto a piece, he follows where the music leads — using open tuning as a foundation that naturally suggests resonance and harmonic color, then layering rhythms and textures through a fingerpicking style built over decades.</p>
+        <p>The elements he values most aren't the obvious ones: rhythm and melody theory take a back seat to tonality, sound quality, the use of space and air, and emotional resonance. He describes his goal simply: to play it exactly as he heard it — to let the music arrive fully formed, then capture it faithfully.</p>
+        <p>The result is music with a distinctly organic quality — forward-moving but unhurried, layered but never cluttered, dreamy but grounded in real wood and real strings.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" style="background:#F2E8D9">
+    <svg viewBox="0 0 1440 40" preserveAspectRatio="none" style="height:40px"><path d="M0 40 C360 0 1080 0 1440 40 L1440 40 L0 40 Z" fill="#FAF6F0"/></svg>
+  </div>
+
+  <section style="background:var(--warm-white); padding:64px clamp(24px,6vw,96px);">
+    <div style="max-width:680px; margin:0 auto; text-align:center;">
+      <a class="btn btn-gold reveal" data-page="music" style="display:inline-flex; margin:0 auto 16px;">Listen to the Music</a>
+      <br>
+      <a class="btn btn-cedar reveal d1" data-page="contact" style="display:inline-flex; margin:12px auto 0;">Book a Show</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-logo" data-page="home">Peter Gross</span>
+      <ul class="footer-nav">
+        <li><a data-page="home">Home</a></li>
+        <li><a data-page="about">About</a></li>
+        <li><a data-page="performances">Shows</a></li>
+        <li><a data-page="music">Music</a></li>
+        <li><a data-page="gallery">Gallery</a></li>
+        <li><a data-page="contact">Contact</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 Peter Gross. All rights reserved.</p>
+    </div>
+  </footer>
+</div><!-- /page-about -->
+
+
+<!-- ══════════════════════════════════
+     PERFORMANCES PAGE
+══════════════════════════════════ -->
+<div class="page" id="page-performances">
+
+  <div class="page-hero">
+    <div class="page-hero-deco">
+      <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 1440 400" fill="none" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+        <line x1="1100" y1="-20" x2="1060" y2="420" stroke="rgba(201,169,110,.07)" stroke-width="1"/>
+        <line x1="1160" y1="-20" x2="1120" y2="420" stroke="rgba(201,169,110,.05)" stroke-width="1"/>
+        <path d="M780 200 Q810 160 840 200 Q870 240 900 200 Q930 160 960 200 Q990 240 1020 200" stroke="rgba(201,169,110,.1)" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+    <div class="page-hero-inner">
+      <p class="section-label">Live Music</p>
+      <h1 class="page-hero-title">Shows &amp;<br><em>Events</em></h1>
+      <p class="page-hero-sub">Catch Peter live in Southern Oregon — intimate venues, outdoor stages, and private events throughout the year.</p>
+    </div>
+  </div>
+
+  <section style="background:var(--warm-white); padding:var(--gap) clamp(24px,6vw,96px);">
+    <div style="max-width:1100px; margin:0 auto;">
+      <p class="section-label reveal">2026 Dates</p>
+      <h2 class="section-heading reveal d1">Upcoming<br><em>Performances</em></h2>
+
+      <ul class="shows-list" style="margin-top:40px;">
+        <li class="show-item reveal" style="border-top-color:rgba(44,24,16,.1);">
+          <div class="show-date">
+            <span class="mo" style="color:var(--cedar);">May</span>
+            <span class="dy" style="color:var(--text-dark);">23</span>
+          </div>
+          <div>
+            <p class="show-venue" style="color:var(--text-dark);">The Liquid Lounge</p>
+            <p class="show-meta" style="color:var(--text-mid);">370 E Main St, Ashland, OR &nbsp;·&nbsp; 7:00 – 9:00 PM &nbsp;·&nbsp; All Ages &nbsp;·&nbsp; Ticketed</p>
+          </div>
+          <a class="show-btn" data-page="contact" style="border-color:rgba(139,94,60,.4); color:var(--cedar);" onmouseover="this.style.background='var(--cedar)';this.style.color='var(--cream)'" onmouseout="this.style.background='';this.style.color='var(--cedar)'">
+            Get Tickets <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5h8M7 2.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </li>
+        <li class="show-item reveal d1" style="border-top-color:rgba(44,24,16,.1); opacity:.5;">
+          <div class="show-date">
+            <span class="mo" style="color:var(--cedar);">Aug</span>
+            <span class="dy" style="color:var(--text-dark); font-size:2rem; opacity:.4;">—</span>
+          </div>
+          <div>
+            <p class="show-venue" style="color:rgba(44,24,16,.4);">Private Function</p>
+            <p class="show-meta" style="color:var(--text-mid);">Available for weddings, corporate events &amp; private gatherings throughout Southern Oregon</p>
+          </div>
+          <span class="show-private-tag" style="color:rgba(44,24,16,.3);">Private</span>
+        </li>
+        <li class="show-item reveal d2" style="border-top-color:rgba(44,24,16,.1); border-bottom:1px solid rgba(44,24,16,.1);">
+          <div class="show-date">
+            <span class="mo" style="color:var(--cedar);">TBA</span>
+            <span class="dy" style="color:var(--text-dark); font-size:2rem; opacity:.35;">—</span>
+          </div>
+          <div>
+            <p class="show-venue" style="color:rgba(44,24,16,.45);">More Shows Coming</p>
+            <p class="show-meta" style="color:var(--text-mid);">New dates added regularly — follow on social or join the mailing list for updates</p>
+          </div>
+          <a class="show-btn" data-page="contact" style="border-color:rgba(139,94,60,.3); color:var(--cedar);" onmouseover="this.style.background='var(--cedar)';this.style.color='var(--cream)'" onmouseout="this.style.background='';this.style.color='var(--cedar)'">
+            Stay Updated <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5h8M7 2.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Booking callout -->
+      <div style="margin-top:80px; background:var(--mahogany); border-radius:2px; padding:clamp(28px,4vw,52px); display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap;" class="reveal">
+        <div>
+          <p style="font-size:.64rem; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">Private Events</p>
+          <p style="font-family:var(--font-d); font-size:clamp(1.3rem,3vw,2rem); font-weight:300; font-style:italic; color:var(--cream); margin-bottom:8px;">Available for hire</p>
+          <p style="font-size:.9rem; font-weight:300; color:rgba(242,232,217,.5); max-width:440px; line-height:1.7;">Peter is available for weddings, private dinners, corporate gatherings, and special events throughout Southern Oregon and beyond. Intimate acoustic performances tailored to your occasion.</p>
+        </div>
+        <a class="btn btn-gold reveal" data-page="contact" style="white-space:nowrap; flex-shrink:0;">Enquire Now</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-logo" data-page="home">Peter Gross</span>
+      <ul class="footer-nav">
+        <li><a data-page="home">Home</a></li>
+        <li><a data-page="about">About</a></li>
+        <li><a data-page="performances">Shows</a></li>
+        <li><a data-page="music">Music</a></li>
+        <li><a data-page="gallery">Gallery</a></li>
+        <li><a data-page="contact">Contact</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 Peter Gross. All rights reserved.</p>
+    </div>
+  </footer>
+</div><!-- /page-performances -->
+
+
+<!-- ══════════════════════════════════
+     MUSIC PAGE
+══════════════════════════════════ -->
+<div class="page" id="page-music">
+
+  <div class="page-hero">
+    <div class="page-hero-deco">
+      <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 1440 400" fill="none" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+        <line x1="1100" y1="-20" x2="1060" y2="420" stroke="rgba(201,169,110,.07)" stroke-width="1"/>
+        <line x1="1160" y1="-20" x2="1120" y2="420" stroke="rgba(201,169,110,.05)" stroke-width="1"/>
+        <path d="M740 190 Q762 148 784 190 Q806 232 828 190 Q850 148 872 190 Q894 232 916 190 Q938 148 960 190" stroke="rgba(201,169,110,.12)" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+    <div class="page-hero-inner">
+      <p class="section-label">Recordings</p>
+      <h1 class="page-hero-title">My<br><em>Songs</em></h1>
+      <p class="page-hero-sub">Dreamy, multi-layered acoustic guitar — stream, download, or simply listen.</p>
+    </div>
+  </div>
+
+  <section class="music-page-body">
+    <div class="music-page-inner">
+
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:36px;">
+        <div>
+          <p class="section-label reveal">Tracks</p>
+          <h2 class="section-heading reveal d1" style="margin-bottom:0;">Listen &amp; <em>Explore</em></h2>
+        </div>
+        <!-- Volume control -->
+        <div class="volume-bar">
+          <svg class="volume-icon" width="16" height="16" viewBox="0 0 18 18" fill="none">
+            <path d="M3 6.5H6L10 3v12l-4-3.5H3V6.5Z" fill="currentColor" opacity=".7"/>
+            <path d="M12.5 5.5C13.8 6.5 14.5 7.7 14.5 9s-.7 2.5-2 3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+          <input class="volume-slider" id="volume-slider" type="range" min="0" max="100" value="80" aria-label="Volume">
+          <span class="volume-pct" id="volume-pct">80%</span>
+        </div>
+      </div>
+
+      <!-- Hidden SoundCloud iframes — positioned off-screen so widget can initialize -->
+      <div style="position:fixed;left:-9999px;top:0;width:200px;height:200px;overflow:hidden;pointer-events:none;opacity:0;" aria-hidden="true">
+        <iframe id="sc-0" width="200" height="200" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/peter-gross-361909254/lupine&auto_play=false&hide_related=true&show_comments=false&show_user=false&visual=false" allow="autoplay"></iframe>
+        <iframe id="sc-1" width="200" height="200" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/peter-gross-361909254/indian-starlight&auto_play=false&hide_related=true&show_comments=false&show_user=false&visual=false" allow="autoplay"></iframe>
+        <iframe id="sc-2" width="200" height="200" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/peter-gross-361909254/making-my-way&auto_play=false&hide_related=true&show_comments=false&show_user=false&visual=false" allow="autoplay"></iframe>
+        <iframe id="sc-3" width="200" height="200" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/peter-gross-361909254/spinner&auto_play=false&hide_related=true&show_comments=false&show_user=false&visual=false" allow="autoplay"></iframe>
+        <iframe id="sc-4" width="200" height="200" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/peter-gross-361909254/tiny-dancer&auto_play=false&hide_related=true&show_comments=false&show_user=false&visual=false" allow="autoplay"></iframe>
+      </div>
+
+      <div class="songs-grid" id="songs-grid-music">
+        <div class="song-card reveal" data-sc-idx="0">
+          <span class="song-num">01</span>
+          <div class="song-info"><p class="song-title">Lupine</p><p class="song-dur" id="dur-0">–:––</p></div>
+          <div class="song-mini-wave" aria-hidden="true"></div>
+          <button class="song-play" aria-label="Play Lupine">
+            <svg class="icon-play" width="13" height="13" viewBox="0 0 13 13" fill="none"><polygon points="2,1 12,6.5 2,12" fill="currentColor"/></svg>
+            <svg class="icon-pause" width="13" height="13" viewBox="0 0 13 13" fill="none" style="display:none"><rect x="2" y="1" width="3.5" height="11" rx="1" fill="currentColor"/><rect x="7.5" y="1" width="3.5" height="11" rx="1" fill="currentColor"/></svg>
+          </button>
+        </div>
+        <div class="song-card reveal d1" data-sc-idx="1">
+          <span class="song-num">02</span>
+          <div class="song-info"><p class="song-title">Indian Starlight</p><p class="song-dur" id="dur-1">–:––</p></div>
+          <div class="song-mini-wave" aria-hidden="true"></div>
+          <button class="song-play" aria-label="Play Indian Starlight">
+            <svg class="icon-play" width="13" height="13" viewBox="0 0 13 13" fill="none"><polygon points="2,1 12,6.5 2,12" fill="currentColor"/></svg>
+            <svg class="icon-pause" width="13" height="13" viewBox="0 0 13 13" fill="none" style="display:none"><rect x="2" y="1" width="3.5" height="11" rx="1" fill="currentColor"/><rect x="7.5" y="1" width="3.5" height="11" rx="1" fill="currentColor"/></svg>
+          </button>
+        </div>
+        <div class="song-card reveal d1" data-sc-idx="2">
+          <span class="song-num">03</span>
+          <div class="song-info"><p class="song-title">Making My Way</p><p class="song-dur" id="dur-2">–:––</p></div>
+          <div class="song-mini-wave" aria-hidden="true"></div>
+          <button class="song-play" aria-label="Play Making My Way">
+            <svg class="icon-play" width="13" height="13" viewBox="0 0 13 13" fill="none"><polygon points="2,1 12,6.5 2,12" fill="currentColor"/></svg>
+            <svg class="icon-pause" width="13" height="13" viewBox="0 0 13 13" fill="none" style="display:none"><rect x="2" y="1" width="3.5" height="11" rx="1" fill="currentColor"/><rect x="7.5" y="1" width="3.5" height="11" rx="1" fill="currentColor"/></svg>
+          </button>
+        </div>
+        <div class="song-card reveal d2" data-sc-idx="3">
+          <span class="song-num">04</span>
+          <div class="song-info"><p class="song-title">Spinner</p><p class="song-dur" id="dur-3">–:––</p></div>
+          <div class="song-mini-wave" aria-hidden="true"></div>
+          <button class="song-play" aria-label="Play Spinner">
+            <svg class="icon-play" width="13" height="13" viewBox="0 0 13 13" fill="none"><polygon points="2,1 12,6.5 2,12" fill="currentColor"/></svg>
+            <svg class="icon-pause" width="13" height="13" viewBox="0 0 13 13" fill="none" style="display:none"><rect x="2" y="1" width="3.5" height="11" rx="1" fill="currentColor"/><rect x="7.5" y="1" width="3.5" height="11" rx="1" fill="currentColor"/></svg>
+          </button>
+        </div>
+        <div class="song-card reveal d2" data-sc-idx="4">
+          <span class="song-num">05</span>
+          <div class="song-info"><p class="song-title">Tiny Dancer</p><p class="song-dur" id="dur-4">–:––</p></div>
+          <div class="song-mini-wave" aria-hidden="true"></div>
+          <button class="song-play" aria-label="Play Tiny Dancer">
+            <svg class="icon-play" width="13" height="13" viewBox="0 0 13 13" fill="none"><polygon points="2,1 12,6.5 2,12" fill="currentColor"/></svg>
+            <svg class="icon-pause" width="13" height="13" viewBox="0 0 13 13" fill="none" style="display:none"><rect x="2" y="1" width="3.5" height="11" rx="1" fill="currentColor"/><rect x="7.5" y="1" width="3.5" height="11" rx="1" fill="currentColor"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Music page: Videos -->
+  <section class="video-section">
+    <div class="video-inner">
+      <p class="section-label reveal" style="color:var(--gold)">Watch</p>
+      <h2 class="section-heading light reveal d1" style="margin-bottom:36px;">Live &amp; <em>In Session</em></h2>
+      <div class="video-grid double reveal d2">
+        <div class="video-wrap">
+          <iframe width="1172" height="659" src="https://www.youtube.com/embed/MNYNR6Vs9WA" title="20260306 Peter Gross Liquid Lounge Song 4 Edge of the Atmosphere v2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube-nocookie.com/embed/pNkHhqrcXy8?rel=0&modestbranding=1" title="Peter Gross — In Session" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="music-streaming" style="background:var(--black);">
+    <div class="streaming-inner">
+      <p class="section-label reveal" style="color:var(--gold)">Stream</p>
+      <h2 class="section-heading light reveal d1">Find it on<br><em>your platform</em></h2>
+      <div class="stream-grid" style="margin-top:40px;">
+        <a href="#" class="stream-card reveal" style="background:rgba(242,232,217,.04); border-color:rgba(242,232,217,.07);">
+          <div class="stream-icon"><svg viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="17" fill="#1DB954" opacity=".15"/><path d="M8 25 C14 22.5 22 22 30 24.5" stroke="#1DB954" stroke-width="2.5" stroke-linecap="round"/><path d="M8 20 C15 17 24 16.5 31 19" stroke="#1DB954" stroke-width="2.5" stroke-linecap="round" opacity=".7"/><path d="M8 15 C16 11.5 26 11 32 13.5" stroke="#1DB954" stroke-width="2.5" stroke-linecap="round" opacity=".4"/></svg></div>
+          <p class="stream-name" style="color:var(--cream)">Spotify</p>
+          <span class="stream-cta" style="color:rgba(242,232,217,.45)">Stream <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a href="#" class="stream-card reveal d1" style="background:rgba(242,232,217,.04); border-color:rgba(242,232,217,.07);">
+          <div class="stream-icon"><svg viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="17" fill="#FC3C44" opacity=".12"/><path d="M19 8 C19 8 11 11.5 11 19 C11 26.5 19 30 19 30 C19 30 27 26.5 27 19 C27 11.5 19 8 19 8Z" stroke="#FC3C44" stroke-width="1.5" fill="none"/><circle cx="19" cy="19" r="4.5" fill="#FC3C44" opacity=".55"/></svg></div>
+          <p class="stream-name" style="color:var(--cream)">Apple Music</p>
+          <span class="stream-cta" style="color:rgba(242,232,217,.45)">Listen <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a href="#" class="stream-card reveal d2" style="background:rgba(242,232,217,.04); border-color:rgba(242,232,217,.07);">
+          <div class="stream-icon"><svg viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="17" fill="#1DA0C3" opacity=".12"/><path d="M9 23 L9 15 Q9 13 11.5 13 Q14 13 14 15 L14 23" stroke="#1DA0C3" stroke-width="2" stroke-linecap="round"/><path d="M17 23 L17 11 Q17 9 19.5 9 Q22 9 22 11 L22 23" stroke="#1DA0C3" stroke-width="2" stroke-linecap="round"/><path d="M25 23 L25 17 Q25 15 27.5 15 Q30 15 30 17 L30 23" stroke="#1DA0C3" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <p class="stream-name" style="color:var(--cream)">Bandcamp</p>
+          <span class="stream-cta" style="color:rgba(242,232,217,.45)">Download <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a href="https://soundcloud.com/peter-gross-361909254" target="_blank" rel="noopener" class="stream-card reveal d3" style="background:rgba(242,232,217,.04); border-color:rgba(242,232,217,.07);">
+          <div class="stream-icon"><svg viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="17" fill="#FF5500" opacity=".12"/><path d="M8 28 Q13 16 19 21 Q25 26 30 12" stroke="#FF5500" stroke-width="2" stroke-linecap="round" fill="none"/></svg></div>
+          <p class="stream-name" style="color:var(--cream)">SoundCloud</p>
+          <span class="stream-cta" style="color:rgba(242,232,217,.45)">Explore <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a href="https://www.instagram.com/therealpetergross/" target="_blank" rel="noopener" class="stream-card reveal d4" style="background:rgba(242,232,217,.04); border-color:rgba(242,232,217,.07);">
+          <div class="stream-icon"><svg viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="17" fill="#E1306C" opacity=".1"/><rect x="11" y="11" width="16" height="16" rx="5" stroke="#E1306C" stroke-width="1.8" fill="none"/><circle cx="19" cy="19" r="4.5" stroke="#E1306C" stroke-width="1.6" fill="none"/><circle cx="24.2" cy="13.8" r="1.1" fill="#E1306C"/></svg></div>
+          <p class="stream-name" style="color:var(--cream)">Instagram</p>
+          <span class="stream-cta" style="color:rgba(242,232,217,.45)">Follow <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M8 3.5l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-logo" data-page="home">Peter Gross</span>
+      <ul class="footer-nav">
+        <li><a data-page="home">Home</a></li>
+        <li><a data-page="about">About</a></li>
+        <li><a data-page="performances">Shows</a></li>
+        <li><a data-page="music">Music</a></li>
+        <li><a data-page="gallery">Gallery</a></li>
+        <li><a data-page="contact">Contact</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 Peter Gross. All rights reserved.</p>
+    </div>
+  </footer>
+</div><!-- /page-music -->
+
+
+<!-- ══════════════════════════════════
+     GALLERY PAGE
+══════════════════════════════════ -->
+<div class="page" id="page-gallery">
+
+  <div class="page-hero">
+    <div class="page-hero-deco">
+      <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 1440 400" fill="none" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+        <line x1="1100" y1="-20" x2="1060" y2="420" stroke="rgba(201,169,110,.07)" stroke-width="1"/>
+        <line x1="1160" y1="-20" x2="1120" y2="420" stroke="rgba(201,169,110,.05)" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="page-hero-inner">
+      <p class="section-label">Photos</p>
+      <h1 class="page-hero-title">Gallery</h1>
+      <p class="page-hero-sub">More about the music, the places, and the person behind the guitar.</p>
+    </div>
+  </div>
+
+  <section class="gallery-body">
+    <div class="gallery-inner">
+      <div class="gallery-intro reveal">
+        <p class="section-label">Images</p>
+        <p>A collection of performance shots, studio moments, and scenes from life in Southern Oregon. </p>
+      </div>
+
+      <div class="gallery-grid">
+
+        <!-- Row 1: portrait + wide B&W -->
+        <div class="gimg gimg-1 reveal">
+          <img src="uploads/_Peter%2026%20299.jpg" alt="Peter Gross with guitar" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+          <div class="gimg-caption">Peter Gross</div>
+        </div>
+        <div class="gimg gimg-2 reveal d1">
+          <img src="uploads/Peter%2026%20085%20copy.jpg" alt="Peter Gross relaxed on couch with guitar" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">
+          <div class="gimg-caption">Relaxed</div>
+        </div>
+
+        <!-- Row 2: wide B&W + portrait -->
+        <div class="gimg gimg-3 reveal d1">
+          <img src="uploads/Peter%2026%20201.jpg" alt="Peter Gross leaning on barn door" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">
+          <div class="gimg-caption">Southern Oregon</div>
+        </div>
+        <div class="gimg gimg-4 reveal d2">
+          <img src="uploads/Peter%2026%20104.jpg" alt="Peter Gross standing with white guitar" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+          <div class="gimg-caption">White Martin</div>
+        </div>
+
+        <!-- Row 3: two portraits -->
+        <div class="gimg gimg-5 reveal d1">
+          <img src="uploads/Peter%2026%20049.jpg" alt="Peter Gross with Martin guitar seated" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+          <div class="gimg-caption">Peter Gross</div>
+        </div>
+        <div class="gimg gimg-6 reveal d2">
+          <img src="uploads/_Peter%2026%20227%20copy.jpg" alt="Peter Gross looking up with guitar" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+          <div class="gimg-caption">Solo Acoustic</div>
+        </div>
+
+      </div>
+      <p class="gallery-note reveal">Photos © Peter Gross. Client to supply final photography assets.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-logo" data-page="home">Peter Gross</span>
+      <ul class="footer-nav">
+        <li><a data-page="home">Home</a></li>
+        <li><a data-page="about">About</a></li>
+        <li><a data-page="performances">Shows</a></li>
+        <li><a data-page="music">Music</a></li>
+        <li><a data-page="gallery">Gallery</a></li>
+        <li><a data-page="contact">Contact</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 Peter Gross. All rights reserved.</p>
+    </div>
+  </footer>
+</div><!-- /page-gallery -->
+
+
+<!-- ══════════════════════════════════
+     CONTACT PAGE
+══════════════════════════════════ -->
+<div class="page" id="page-contact">
+
+  <div class="page-hero">
+    <div class="page-hero-deco">
+      <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 1440 400" fill="none" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+        <line x1="1100" y1="-20" x2="1060" y2="420" stroke="rgba(201,169,110,.07)" stroke-width="1"/>
+        <line x1="1160" y1="-20" x2="1120" y2="420" stroke="rgba(201,169,110,.05)" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="page-hero-inner">
+      <p class="section-label">Reach Out</p>
+      <h1 class="page-hero-title">Let's<br><em>Connect</em></h1>
+      <p class="page-hero-sub">For bookings, press enquiries, or just to say hello — Peter reads every message.</p>
+    </div>
+  </div>
+
+  <section class="contact-body">
+    <div class="contact-inner">
+
+      <div class="contact-info">
+        <p class="section-label reveal">Contact</p>
+        <h2 class="section-heading reveal d1">Get in<br><em>Touch</em></h2>
+        <p class="contact-blurb reveal d2">Peter is available for live performances, private events, weddings, and corporate gatherings throughout Southern Oregon and the West Coast. He also welcomes press and collaboration enquiries.</p>
+
+        <div class="contact-detail reveal d2">
+          <p class="contact-detail-label">Email</p>
+          <p class="contact-detail-value"><a href="mailto:peetasan@gmail.com">peetasan@gmail.com</a></p>
+        </div>
+        <div class="contact-detail reveal d2">
+          <p class="contact-detail-label">Location</p>
+          <p class="contact-detail-value">Ashland, OR 97520</p>
+        </div>
+        <div class="contact-detail reveal d3">
+          <p class="contact-detail-label">Availability</p>
+          <p class="contact-detail-value" style="font-size:.9rem; font-weight:300; line-height:1.7; color:var(--text-mid);">Available for intimate concerts, private dinners, outdoor festivals, wedding ceremonies and receptions, and corporate events. Typically books 4–8 weeks in advance.</p>
+        </div>
+        <div class="contact-detail reveal d3">
+          <p class="contact-detail-label">Website</p>
+          <p class="contact-detail-value"><a href="https://www.petergrossmusic.com" target="_blank" rel="noopener">petergrossmusic.com</a></p>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap reveal d1">
+        <h3>Send a message</h3>
+        <form class="contact-form" id="contact-form" onsubmit="handleSubmit(event)" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-name">Your Name</label>
+              <input type="text" id="f-name" name="name" placeholder="Jane Smith" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="f-email">Email Address</label>
+              <input type="email" id="f-email" name="email" placeholder="jane@example.com" autocomplete="email">
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-type">Type of Inquiry</label>
+            <select id="f-type" name="inquiry">
+              <option value="">Select one…</option>
+              <option value="booking">Live Event Booking</option>
+              <option value="private">Private Function</option>
+              <option value="wedding">Wedding</option>
+              <option value="corporate">Corporate Event</option>
+              <option value="press">Press / Media</option>
+              <option value="other">General Question</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-date">Event Date (if applicable)</label>
+              <input type="text" id="f-date" name="date" placeholder="e.g. July 15, 2026">
+            </div>
+            <div class="field">
+              <label for="f-location">Event Location</label>
+              <input type="text" id="f-location" name="location" placeholder="City, Venue">
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-msg">Message</label>
+            <textarea id="f-msg" name="message" placeholder="Tell me about your event, the vibe you're looking for, expected guest count, and any other details…"></textarea>
+          </div>
+          <div class="form-submit" style="margin-top:6px;">
+            <button type="submit" class="btn btn-gold">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1 6.5h11M7.5 3l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Send Message
+            </button>
+          </div>
+        </form>
+        <div class="form-success" id="form-success">
+          <p>Thank you — Peter will be in touch soon.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-logo" data-page="home">Peter Gross</span>
+      <ul class="footer-nav">
+        <li><a data-page="home">Home</a></li>
+        <li><a data-page="about">About</a></li>
+        <li><a data-page="performances">Shows</a></li>
+        <li><a data-page="music">Music</a></li>
+        <li><a data-page="gallery">Gallery</a></li>
+        <li><a data-page="contact">Contact</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 Peter Gross. All rights reserved.</p>
+    </div>
+  </footer>
+</div><!-- /page-contact -->
+
+
+<!-- ══════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════ -->
+<script>
+  // ── Router ──
+  const pages = ['home','about','performances','music','gallery','contact'];
+
+  function navigate(pageId) {
+    if (!pages.includes(pageId)) pageId = 'home';
+
+    // Show/hide pages
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + pageId);
+    if (target) target.classList.add('active');
+
+    // Nav active state
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === pageId);
+    });
+
+    // Nav solid on non-home pages
+    const nav = document.getElementById('main-nav');
+    if (pageId === 'home') {
+      nav.classList.remove('solid');
+    } else {
+      nav.classList.add('solid');
+    }
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'instant' });
+
+    // Re-trigger reveals on new page
+    setTimeout(triggerReveals, 60);
+
+    // Update hash
+    history.pushState({ page: pageId }, '', '#' + pageId);
+  }
+
+  // ── Handle all [data-page] clicks ──
+  document.addEventListener('click', e => {
+    const el = e.target.closest('[data-page]');
+    if (el) {
+      e.preventDefault();
+      navigate(el.dataset.page);
+      document.getElementById('nav-links').classList.remove('open');
+    }
+  });
+
+  // ── Nav scroll ──
+  const mainNav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    const activePage = document.querySelector('.page.active');
+    if (activePage && activePage.id === 'page-home') {
+      mainNav.classList.toggle('scrolled', window.scrollY > 60);
+    }
+  }, { passive: true });
+
+  // ── Mobile nav ──
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks  = document.getElementById('nav-links');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+
+  // ── Scroll reveal ──
+  function triggerReveals() {
+    const activePage = document.querySelector('.page.active');
+    if (!activePage) return;
+    const reveals = activePage.querySelectorAll('.reveal');
+    // Reset
+    reveals.forEach(el => el.classList.remove('in'));
+    // Observe
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    reveals.forEach(el => obs.observe(el));
+  }
+
+  // ── Waveform ──
+  function buildWaveform(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = '';
+    const heights = [.3,.52,.74,.92,.62,.82,1,.72,.5,.84,.6,.94,.42,.72,.52,.84,.64,1,.72,.42,.62,.82,.5,.92,.7,.4,.62,.8,.34,.54,.7,.44,.64,.9,.52,.72,.42,.64,.82,.32];
+    heights.forEach((h, i) => {
+      const bar = document.createElement('span');
+      bar.style.cssText = `--h:${h}; height:${h*100}%; animation-delay:${(i*.04).toFixed(2)}s`;
+      el.appendChild(bar);
+    });
+  }
+
+  // ── Contact form ──
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('form-success').classList.add('visible');
+  }
+
+  // ── Init ──
+  const initialPage = location.hash.replace('#','') || 'home';
+  navigate(initialPage);
+  buildWaveform('waveform-home');
+
+  window.addEventListener('popstate', e => {
+    if (e.state && e.state.page) navigate(e.state.page);
+  });
+</script>
+<script src="https://w.soundcloud.com/player/api.js"></script>
+<script>
+  // ── SoundCloud Widget Setup ──
+  const SC_TRACK_COUNT = 5;
+  const scWidgets = [];
+  let activeIdx = -1;
+
+  function fmtMs(ms) {
+    const s = Math.round(ms / 1000);
+    return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+  }
+
+  function buildMiniWave(el) {
+    const heights = [0.4,0.7,1,0.6,0.85,0.5,0.9,0.65,0.75,0.45,0.8,0.55,0.95,0.6,0.7];
+    heights.forEach((h, i) => {
+      const bar = document.createElement('span');
+      bar.style.height = (h * 22) + 'px';
+      bar.style.setProperty('--spd', (0.5 + Math.random() * 0.5).toFixed(2) + 's');
+      bar.style.animationDelay = (i * 0.04).toFixed(2) + 's';
+      el.appendChild(bar);
+    });
+  }
+
+  function setPlaying(idx, playing) {
+    document.querySelectorAll('#songs-grid-music .song-card').forEach((card, i) => {
+      const isThis = (i === idx) && playing;
+      card.classList.toggle('is-playing', isThis);
+      card.querySelector('.icon-play').style.display  = isThis ? 'none'  : '';
+      card.querySelector('.icon-pause').style.display = isThis ? ''      : 'none';
+    });
+    activeIdx = playing ? idx : -1;
+  }
+
+  document.querySelectorAll('#songs-grid-music .song-mini-wave').forEach(buildMiniWave);
+
+  for (let i = 0; i < SC_TRACK_COUNT; i++) {
+    const iframe = document.getElementById('sc-' + i);
+    if (!iframe) continue;
+    const widget = SC.Widget(iframe);
+    scWidgets[i] = widget;
+
+    (function(idx, w) {
+      w.bind(SC.Widget.Events.READY, function() {
+        w.getDuration(function(ms) {
+          const el = document.getElementById('dur-' + idx);
+          if (el) el.textContent = fmtMs(ms);
+        });
+      });
+      w.bind(SC.Widget.Events.FINISH, function() {
+        setPlaying(idx, false);
+      });
+      w.bind(SC.Widget.Events.PAUSE, function() {
+        setPlaying(idx, false);
+      });
+      w.bind(SC.Widget.Events.PLAY, function() {
+        setPlaying(idx, true);
+      });
+    })(i, widget);
+  }
+
+  // Volume control
+  const volSlider = document.getElementById('volume-slider');
+  const volPct = document.getElementById('volume-pct');
+  function updateVolume(v) {
+    volSlider.style.setProperty('--pct', v + '%');
+    volPct.textContent = v + '%';
+    scWidgets.forEach(function(w) { if (w) w.setVolume(v); });
+  }
+  if (volSlider) {
+    volSlider.addEventListener('input', function() { updateVolume(parseInt(this.value)); });
+    updateVolume(80);
+  }
+
+  document.querySelectorAll('#songs-grid-music .song-card').forEach(function(card, idx) {
+    card.querySelector('.song-play').addEventListener('click', function() {
+      const isActive = activeIdx === idx;
+      // Pause all others first
+      scWidgets.forEach(function(w, i) { if (i !== idx) { w.pause(); setPlaying(i, false); } });
+      if (isActive) {
+        scWidgets[idx].pause();
+        setPlaying(idx, false);
+      } else {
+        setPlaying(idx, true);
+        scWidgets[idx].play();
+        if (volSlider) scWidgets[idx].setVolume(parseInt(volSlider.value));
+      }
+    });
+  });
+</script>
+</body>
+</html>
